@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PotionPart1Dropdown
-  - PotionPart2Dropdown
+  - Enemy
   layers:
   - Default
   - TransparentFX
