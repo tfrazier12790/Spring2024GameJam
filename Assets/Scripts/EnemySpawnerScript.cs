@@ -5,11 +5,13 @@ using UnityEngine;
 public class EnemySpawnerScript : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] GameObject gameController;
     [SerializeField] GameObject spawner;
     [SerializeField] float rotationSpeed = 30.0f;
-    [SerializeField] float timerStart = 5;
+    [SerializeField] float timerStart = 4;
     [SerializeField] float timer = 0;
     [SerializeField] GameObject enemy1;
+    [SerializeField] GameObject enemy2;
     // Start is called before the first frame update
 
     Vector3 CameraPosition()
@@ -19,6 +21,7 @@ public class EnemySpawnerScript : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        gameController = GameObject.FindGameObjectWithTag("GameController");
     }
 
     // Update is called once per frame
@@ -32,10 +35,21 @@ public class EnemySpawnerScript : MonoBehaviour
             timer -= Time.deltaTime;
         } else
         {
-            Instantiate(enemy1, spawner.transform.position, Quaternion.identity);
+            if (gameController.GetComponent<TimerScript>().GetMinutes() < 2)
+            {
+                Instantiate(enemy1, spawner.transform.position, Quaternion.identity);
+            }
+            if (gameController.GetComponent<TimerScript>().GetMinutes() >= 2)
+            {
+                Instantiate(enemy2, spawner.transform.position,Quaternion.identity);
+            }
             timerStart -= 0.05f;
-            rotationSpeed += 0.05f;
+            rotationSpeed += 0.1f;
             timer = timerStart;
+            if(timerStart < .5f)
+            {
+                timerStart = .5f;
+            }
         }
     }
 }

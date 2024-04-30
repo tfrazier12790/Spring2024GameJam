@@ -38,6 +38,7 @@ public class Enemy1 : MonoBehaviour
 
         if(health <= 0)
         {
+            player.GetComponent<PlayerMovementScript>().AddMoney(Random.Range(1, 4));
             Destroy(gameObject);
         }
 
