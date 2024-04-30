@@ -16,6 +16,8 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] Sprite lightningSprite;
     [SerializeField] Sprite windSprite;
 
+    [SerializeField] GameObject explosionPrefab;
+
     public class Potion
     {
         Ingredient ingredient1;
@@ -108,6 +110,15 @@ public class NewBehaviourScript : MonoBehaviour
         }
         ingredients.Clear();
         Debug.Log("Potion ID: " + finishedPotionID);
+        switch (finishedPotionID) {
+            case 0:
+                Instantiate(explosionPrefab, MouseWorldPosition(), transform.rotation); break;
+        }
+    }
+
+    public Vector3 MouseWorldPosition()
+    {
+        return new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
     }
 
     // Start is called before the first frame update
