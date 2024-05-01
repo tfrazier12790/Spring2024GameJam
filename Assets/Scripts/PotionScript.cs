@@ -13,39 +13,38 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] SpriteRenderer ingredient2SpriteRenderer;
     [SerializeField] Sprite fireSprite;
     [SerializeField] Sprite waterSprite;
-    [SerializeField] Sprite lightningSprite;
     [SerializeField] Sprite windSprite;
 
     [SerializeField] GameObject explosionPrefab;
 
-    public class Potion
-    {
-        Ingredient ingredient1;
-        Ingredient ingredient2;
-        UInt16 finishedPotionID;
+    //public class Potion
+    //{
+    //    Ingredient ingredient1;
+    //    Ingredient ingredient2;
+    //    UInt16 finishedPotionID;
 
-        public Potion(Ingredient newIngredient1, Ingredient newIngredient2)
-        {
-            this.ingredient1 = newIngredient1;
-            this.ingredient2 = newIngredient2;
-        }
+    //    public Potion(Ingredient newIngredient1, Ingredient newIngredient2)
+    //    {
+    //        this.ingredient1 = newIngredient1;
+    //        this.ingredient2 = newIngredient2;
+    //    }
 
-        public void SetPotionPart1( Ingredient newPart1)
-        {
-            ingredient1 = newPart1;
-        }
-        public Ingredient GetPotionPart1() {  return ingredient1; }
-        public void SetPotionPart2( Ingredient newPart2)
-        {
-            ingredient2 = newPart2;
-        }
-        public Ingredient GetPotionPart2() { return ingredient2; }
-        void SetFinishedPotionID()
-        {
-            finishedPotionID = (UInt16)((int)ingredient1.GetPotionPartID() * (int)ingredient2.GetPotionPartID());
-        }
-        public UInt16 GetFinishedPotionID() {  return finishedPotionID; }
-    }
+    //    public void SetPotionPart1( Ingredient newPart1)
+    //    {
+    //        ingredient1 = newPart1;
+    //    }
+    //    public Ingredient GetPotionPart1() {  return ingredient1; }
+    //    public void SetPotionPart2( Ingredient newPart2)
+    //    {
+    //        ingredient2 = newPart2;
+    //    }
+    //    public Ingredient GetPotionPart2() { return ingredient2; }
+    //    void SetFinishedPotionID()
+    //    {
+    //        finishedPotionID = (UInt16)((int)ingredient1.GetPotionPartID() * (int)ingredient2.GetPotionPartID());
+    //    }
+    //    public UInt16 GetFinishedPotionID() {  return finishedPotionID; }
+    //}
 
     public class Ingredient
     {
@@ -83,19 +82,11 @@ public class NewBehaviourScript : MonoBehaviour
         }
         public string GetName() { return ingredientName; }
     }
-    public class Lightningium : Ingredient
-    {
-        public Lightningium()
-        {
-            ingredientID = 3;
-            ingredientName = "Lightningium";
-        }
-    }
     public class Windium : Ingredient
     {
         public Windium()
         {
-            ingredientID = 4;
+            ingredientID = 3;
             ingredientName = "Windium";
         }
     }
@@ -106,7 +97,7 @@ public class NewBehaviourScript : MonoBehaviour
         Debug.Log("Second Element: " + ingredients[1].GetPotionPartName());
         if (ingredients.Count == 2)
         {
-            finishedPotionID = (ingredients[0].GetPotionPartID() - 1) * 4 + (ingredients[1].GetPotionPartID() - 1);
+            finishedPotionID = (ingredients[0].GetPotionPartID() - 1) * 3 + (ingredients[1].GetPotionPartID() - 1);
         }
         ingredients.Clear();
         Debug.Log("Potion ID: " + finishedPotionID);
@@ -157,16 +148,6 @@ public class NewBehaviourScript : MonoBehaviour
             ingredients.Add(tempIngredient);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (ingredients.Count >= 2)
-            {
-                ingredients.RemoveAt(0);
-            }
-            Ingredient tempIngredient = new Lightningium();
-            tempIngredient.SetSprite(lightningSprite);
-            ingredients.Add(tempIngredient);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             if (ingredients.Count >= 2)
             {
