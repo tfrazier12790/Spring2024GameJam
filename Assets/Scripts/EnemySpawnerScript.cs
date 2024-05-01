@@ -46,9 +46,9 @@ public class EnemySpawnerScript : MonoBehaviour
             timerStart -= 0.05f;
             rotationSpeed += 0.1f;
             timer = timerStart;
-            if(timerStart < .25f)
+            if(timerStart < .5f)
             {
-                timerStart = .25f;
+                timerStart = .5f;
             }
         }
     }

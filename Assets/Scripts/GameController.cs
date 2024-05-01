@@ -12,10 +12,13 @@ public class TimerScript : MonoBehaviour
     [SerializeField] TMP_Text secondsText;
     [SerializeField] TMP_Text minutesText;
     [SerializeField] GameObject pauseScreen;
+    [SerializeField] GameObject gameOverScreen;
+    GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     public void QuitGame()
     {
@@ -42,14 +45,20 @@ public class TimerScript : MonoBehaviour
         secondsText.text = string.Format("{0:D2}", seconds);
         minutesText.text = string.Format("{0}", minutes);
 
-        if(Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1)
+        if(Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 1 && !gameOverScreen.activeSelf)
         {
             Time.timeScale = 0;
             pauseScreen.SetActive(true);
-        } else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0)
+        } else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0 && !gameOverScreen.activeSelf)
         {
             Time.timeScale = 1;
             pauseScreen.SetActive(false);
+        }
+
+        if (player.GetComponent<PlayerMovementScript>().PlayerStatus())
+        {
+            Time.timeScale = 0;
+            gameOverScreen.SetActive(true);
         }
     }
 }
