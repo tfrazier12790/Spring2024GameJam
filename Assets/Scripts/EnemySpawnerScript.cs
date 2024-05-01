@@ -8,7 +8,7 @@ public class EnemySpawnerScript : MonoBehaviour
     [SerializeField] GameObject gameController;
     [SerializeField] GameObject spawner;
     [SerializeField] float rotationSpeed = 30.0f;
-    [SerializeField] float timerStart = 4;
+    [SerializeField] float timerStart = 3.5f;
     [SerializeField] float timer = 0;
     [SerializeField] GameObject enemy1;
     [SerializeField] GameObject enemy2;
@@ -46,9 +46,9 @@ public class EnemySpawnerScript : MonoBehaviour
             timerStart -= 0.05f;
             rotationSpeed += 0.1f;
             timer = timerStart;
-            if(timerStart < .5f)
+            if(timerStart < .25f)
             {
-                timerStart = .5f;
+                timerStart = .25f;
             }
         }
     }

@@ -10,6 +10,7 @@ public class Enemy1 : MonoBehaviour
     [SerializeField] Slider healthBar;
     [SerializeField] float damageScalar = 1.0f;
     GameObject player;
+    GameObject scorekeeper;
 
     public void TakeDamage(int damage)
     {
@@ -28,6 +29,7 @@ public class Enemy1 : MonoBehaviour
     {
         healthBar.maxValue = health;
         player = GameObject.FindGameObjectWithTag("Player");
+        scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class Enemy1 : MonoBehaviour
 
         if(health <= 0)
         {
-            player.GetComponent<PlayerMovementScript>().AddMoney(Random.Range(1, 4));
+            scorekeeper.GetComponent<ScoreKeeper>().AddToScore(Random.Range(1, 4));
             Destroy(gameObject);
         }
 
