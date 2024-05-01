@@ -7,7 +7,7 @@ using TMPro;
 public class PlayerMovementScript : MonoBehaviour
 {
     [SerializeField] float health = 10;
-    [SerializeField] static int money = 0;
+    [SerializeField] GameObject scorekeeper;
     [SerializeField] Slider healthBar;
     [SerializeField] TMP_Text scoreText;
     public float speed = 2f;
@@ -18,21 +18,18 @@ public class PlayerMovementScript : MonoBehaviour
         health -= damage;
     }
 
-    public void AddMoney(int moneyToAdd)
-    {
-        money += moneyToAdd;
-    }
     // Start is called before the first frame update
     void Start()
     {
         location = transform.position;
         healthBar.maxValue = health;
+        scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = string.Format("{0:D4}", money);
+        scoreText.text = string.Format("{0:D4}", scorekeeper.GetComponent<ScoreKeeper>().GetScore());
         if(Input.GetMouseButtonDown(0))
         {
             location = Camera.main.ScreenToWorldPoint(Input.mousePosition);

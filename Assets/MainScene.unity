@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  scorekeeper: {fileID: 0}
   healthBar: {fileID: 1437341383}
   scoreText: {fileID: 1107943401}
   speed: 2
@@ -469,7 +470,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 560917644}
         m_TargetAssemblyTypeName: TimerScript, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -892,9 +893,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 560917644}
         m_TargetAssemblyTypeName: TimerScript, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: ReturnToStore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1312,10 +1313,10 @@ RectTransform:
   - {fileID: 573623521}
   m_Father: {fileID: 1802997308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: 232.47}
-  m_SizeDelta: {x: 100, y: 45.0504}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -6, y: -25.529999}
+  m_SizeDelta: {x: 100, y: 45.050415}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1032459377
 GameObject:
@@ -1502,7 +1503,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 560917644}
         m_TargetAssemblyTypeName: TimerScript, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -1752,7 +1753,7 @@ MonoBehaviour:
   gameController: {fileID: 0}
   spawner: {fileID: 1535848762}
   rotationSpeed: 30
-  timerStart: 4
+  timerStart: 3.5
   timer: 0
   enemy1: {fileID: 858860913341587082, guid: 1695622a0caee054bb729e9f576233be, type: 3}
   enemy2: {fileID: 2566601620946004514, guid: e0fe8adeb037e1344aba141df8894504, type: 3}
