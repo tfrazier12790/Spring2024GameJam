@@ -100,12 +100,12 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void Explosion()
     {
-        Instantiate(explosionPrefab, MouseWorldPosition(), transform.rotation);
+        Instantiate(explosionPrefab, MouseWorldPosition(), Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0.0f, 360.0f))));
     }
 
     public void TidalWave()
     {
-        Instantiate(tidalWavePrefab, transform.position, transform.rotation);
+        Instantiate(tidalWavePrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0.0f, 360.0f))));
     }
     public void Windshear()
     {
@@ -118,7 +118,7 @@ public class NewBehaviourScript : MonoBehaviour
     }
     public void Steam()
     {
-        Instantiate(steamPrefab, MouseWorldPosition(), transform.rotation);
+        Instantiate(steamPrefab, MouseWorldPosition(), Quaternion.Euler(new Vector3(0, 0, UnityEngine.Random.Range(0.0f, 360.0f))));
     }
     public void Updraft()
     {

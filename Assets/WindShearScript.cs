@@ -18,7 +18,7 @@ public class WindShearScript : MonoBehaviour
         endPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         lookAngle = Mathf.Atan2(endPosition.y - transform.position.y, endPosition.x - transform.position.x) * Mathf.Rad2Deg;
         lookRot = Quaternion.Euler(new Vector3(0, 0, lookAngle));
-        transform.localScale = new Vector3(.5f, scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() * 0.75f, 1);
+        transform.localScale = new Vector3(.5f * scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() * 0.75f, scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() * 0.75f, 1);
     }
 
     // Update is called once per frame
