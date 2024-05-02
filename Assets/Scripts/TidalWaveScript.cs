@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionScript : MonoBehaviour
+public class TidalWaveScript : MonoBehaviour
 {
     [SerializeField] float expansionSpeed = 10.0f;
     [SerializeField] Vector3 finishedSize;
@@ -12,7 +12,7 @@ public class ExplosionScript : MonoBehaviour
     void Start()
     {
         scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
-        finishedSize = new Vector3(((float)scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() / 3) + 1, ((float)scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() / 3) + 1, 1);
+        finishedSize = new Vector3(((float)scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat()/2) + 3, ((float)scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat()/2) + 3, 1);
         Debug.Log(finishedSize);
     }
 
@@ -32,7 +32,6 @@ public class ExplosionScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy Hit");
-            collision.gameObject.SendMessage("TakeDamage", 3);
         }
     }
 }

@@ -6,12 +6,12 @@ public class ScoreKeeper : MonoBehaviour
 {
     public static ScoreKeeper instance;
     static int score;
-    static int playerFireStat = 1;
-    static int fireCost = 72;
-    static int playerWaterStat = 0;
-    static int waterCost = 50;
-    static int playerWindStat = 0;
-    static int windCost = 50;
+    [SerializeField] int playerFireStat = 1;
+    [SerializeField] int fireCost = 72;
+    [SerializeField] int playerWaterStat = 0;
+    [SerializeField] int waterCost = 50;
+    [SerializeField] int playerWindStat = 0;
+    [SerializeField] int windCost = 50;
 
     private void Awake()
     {
