@@ -18,6 +18,9 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] GameObject tidalWavePrefab;
     [SerializeField] GameObject windShearPrefab;
+    [SerializeField] GameObject steamPrefab;
+
+    [SerializeField] GameObject scorekeeper;
 
     public class Ingredient
     {
@@ -77,13 +80,19 @@ public class NewBehaviourScript : MonoBehaviour
             case 0:
                 Explosion(); break;
             case 1:
-                 break;
+                Steam();  break;
             case 2:
-                break;
+                Updraft(); break;
             case 3:
-                 break;
+                Steam(); break;
             case 4:
                 TidalWave(); break;
+            case 5:
+                Cleanse(); break;
+            case 6:
+                Updraft(); break;
+            case 7:
+                Cleanse(); break;
             case 8:
                 Windshear(); break;
         }
@@ -102,6 +111,29 @@ public class NewBehaviourScript : MonoBehaviour
     {
         Instantiate(windShearPrefab, transform.position, transform.rotation);
     }
+    public void Cleanse()
+    {
+        gameObject.GetComponent<PlayerMovementScript>().AddHealth(((float)scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat() * 0.6f) + 
+                                                                  ((float)scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() * 0.6f));
+    }
+    public void Steam()
+    {
+        Instantiate(steamPrefab, MouseWorldPosition(), transform.rotation);
+    }
+    public void Updraft()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector3.forward);
+
+        //Debug.Log(ray);
+        Debug.Log(hit.collider.tag);
+        if (hit.collider.tag == "Enemy")
+        {
+            Debug.Log("HitEnemy");
+            hit.collider.gameObject.SendMessage("StartDot");
+
+        }
+    }
 
     public Vector3 MouseWorldPosition()
     {
@@ -114,6 +146,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (ingredients == null) {
             ingredients = new List<Ingredient>(2);
         }
+        scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
     }
 
     // Update is called once per frame

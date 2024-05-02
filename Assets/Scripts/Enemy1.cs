@@ -1,20 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Enemy1 : MonoBehaviour
 {
-    [SerializeField] float speed = .5f;
-    [SerializeField] int health = 8;
+    [SerializeField] float maxSpeed = 1.0f;
+    [SerializeField] float speed;
+    [SerializeField] float health = 8;
     [SerializeField] Slider healthBar;
     [SerializeField] float damageScalar = 1.0f;
+    //[SerializeField] bool slow = false;
+    [SerializeField] float timer;
+    [SerializeField] float dotTimer = 0;
     GameObject player;
     GameObject scorekeeper;
 
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+    public void MakeSlow()
+    {
+        timer = (((float)scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat() / 2) + ((float)scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() / 2));
+        Debug.Log("MadeSlow");
+    }
+    public void StartDot()
+    {
+        dotTimer = 2;
+        Debug.Log("DoT Started");
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -30,6 +45,7 @@ public class Enemy1 : MonoBehaviour
         healthBar.maxValue = health;
         player = GameObject.FindGameObjectWithTag("Player");
         scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
+        speed = maxSpeed;
     }
 
     // Update is called once per frame
@@ -42,6 +58,21 @@ public class Enemy1 : MonoBehaviour
         {
             scorekeeper.GetComponent<ScoreKeeper>().AddToScore(Random.Range(1, 4));
             Destroy(gameObject);
+        }
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            speed = maxSpeed / (((float)scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat() / 2) + ((float)scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() / 2));
+        } else
+        {
+            speed = maxSpeed;
+        }
+
+        if(dotTimer > 0)
+        {
+            dotTimer -= Time.deltaTime;
+            health -= (((float)scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() / 5) + ((float)scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() / 5)) * Time.deltaTime;
         }
 
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);

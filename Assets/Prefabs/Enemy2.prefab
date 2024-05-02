@@ -188,7 +188,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &3344848009778988962
 CircleCollider2D:
@@ -237,10 +237,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6a4726176be2b47bdcd67ba5f9eb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 2
   speed: 2
   health: 14
   healthBar: {fileID: 840018217732474647}
   damageScalar: 1
+  timer: 0
+  dotTimer: 0
 --- !u!1 &3923310902505275420
 GameObject:
   m_ObjectHideFlags: 0
