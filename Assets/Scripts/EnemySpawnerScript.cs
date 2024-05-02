@@ -8,10 +8,11 @@ public class EnemySpawnerScript : MonoBehaviour
     [SerializeField] GameObject gameController;
     [SerializeField] GameObject spawner;
     [SerializeField] float rotationSpeed = 30.0f;
-    [SerializeField] float timerStart = 3.5f;
+    [SerializeField] float timerStart = 2f;
     [SerializeField] float timer = 0;
     [SerializeField] GameObject enemy1;
     [SerializeField] GameObject enemy2;
+    [SerializeField] GameObject boss;
     // Start is called before the first frame update
 
     Vector3 CameraPosition()
@@ -39,11 +40,16 @@ public class EnemySpawnerScript : MonoBehaviour
             {
                 Instantiate(enemy1, spawner.transform.position, Quaternion.identity);
             }
-            if (gameController.GetComponent<TimerScript>().GetMinutes() >= 2)
+            if (gameController.GetComponent<TimerScript>().GetMinutes() >= 2 && gameController.GetComponent<TimerScript>().GetMinutes() < 3)
             {
                 Instantiate(enemy2, spawner.transform.position,Quaternion.identity);
             }
-            timerStart -= 0.05f;
+            if(gameController.GetComponent<TimerScript>().GetMinutes() >= 3)
+            {
+                Instantiate(boss, spawner.transform.position, Quaternion.identity);
+            }
+
+            timerStart -= 0.008f;
             rotationSpeed += 0.1f;
             timer = timerStart;
             if(timerStart < .5f)

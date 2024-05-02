@@ -11,6 +11,7 @@ public class Enemy1 : MonoBehaviour
     [SerializeField] float health = 8;
     [SerializeField] Slider healthBar;
     [SerializeField] float damageScalar = 1.0f;
+    [SerializeField] float healthBarOffset = 0.75f;
     //[SerializeField] bool slow = false;
     [SerializeField] float timer;
     [SerializeField] float dotTimer = 0;
@@ -51,7 +52,7 @@ public class Enemy1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y - 0.75f, transform.position.z));
+        healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y - healthBarOffset, transform.position.z));
         healthBar.value = health;
 
         if(health <= 0)
@@ -75,6 +76,13 @@ public class Enemy1 : MonoBehaviour
             health -= (((float)scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() / 5) + ((float)scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() / 5)) * Time.deltaTime;
         }
 
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        if(transform.position.x < player.transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else if (transform.position.x > player.transform.position.x)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 }

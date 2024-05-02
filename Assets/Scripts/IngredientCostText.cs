@@ -18,8 +18,30 @@ public class IngredientCostText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fireCostText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetFireCost());
-        waterCostText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWaterCost());
-        windCostText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWindCost());
+        if (scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() < 10)
+        {
+            fireCostText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetFireCost());
+        } else
+        {
+            fireCostText.text = "MAX";
+        }
+
+        if (scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat() < 10)
+        {
+            waterCostText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWaterCost());
+        }
+        else
+        {
+            waterCostText.text = "MAX";
+        }
+
+        if (scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() < 10)
+        {
+            windCostText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWindCost());
+        }
+        else
+        {
+            windCostText.text = "MAX";
+        }
     }
 }

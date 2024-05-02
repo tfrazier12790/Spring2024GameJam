@@ -18,8 +18,30 @@ public class ElementLevelsText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fireLevelText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetFireStat());
-        waterLevelText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat());
-        windLevelText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWindStat());
+        if (scorekeeper.GetComponent<ScoreKeeper>().GetFireStat() < 10)
+        {
+            fireLevelText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetFireStat());
+        } else
+        {
+            fireLevelText.text = "MAX";
+        }
+
+        if (scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat() < 10)
+        {
+            waterLevelText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat());
+        }
+        else
+        {
+            waterLevelText.text = "MAX";
+        }
+
+        if (scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() < 10)
+        {
+            windLevelText.text = string.Format("+{0}", scorekeeper.GetComponent<ScoreKeeper>().GetWindStat());
+        }
+        else
+        {
+            windLevelText.text = "MAX";
+        }
     }
 }

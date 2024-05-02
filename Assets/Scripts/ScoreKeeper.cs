@@ -29,7 +29,7 @@ public class ScoreKeeper : MonoBehaviour
     }
     public void AddToFire()
     {
-        if (score >= fireCost)
+        if (score >= fireCost && playerFireStat < 10)
         {
             playerFireStat++;
             score -= fireCost;
@@ -43,7 +43,7 @@ public class ScoreKeeper : MonoBehaviour
     public int GetFireCost() { return  fireCost; }
     public void AddToWater()
     {
-        if (score >= waterCost)
+        if (score >= waterCost && playerWaterStat < 10)
         {
             playerWaterStat++;
             score -= waterCost;
@@ -57,7 +57,7 @@ public class ScoreKeeper : MonoBehaviour
     public int GetWaterCost() { return waterCost; }
     public void AddToWind()
     {
-        if (score >= windCost)
+        if (score >= windCost && playerWindStat < 10)
         {
             playerWindStat++;
             score -= windCost;

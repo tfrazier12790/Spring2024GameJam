@@ -45,6 +45,13 @@ public class PlayerMovementScript : MonoBehaviour
         {
             location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
+        if (transform.position.x < location.x)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        } else if (transform.position.x > location.x)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
         transform.position = Vector2.MoveTowards(transform.position, location, speed * Time.deltaTime);
         healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y - 0.75f, transform.position.z));
         healthBar.value = health;
