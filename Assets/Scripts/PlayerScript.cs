@@ -6,7 +6,8 @@ using TMPro;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    [SerializeField] float health = 10;
+    [SerializeField] float maxHealth = 10;
+    [SerializeField] float health;
     [SerializeField] GameObject scorekeeper;
     [SerializeField] Slider healthBar;
     //[SerializeField] TMP_Text scoreText;
@@ -18,6 +19,10 @@ public class PlayerMovementScript : MonoBehaviour
     {
         health -= damage;
     }
+    public void AddHealth(float healthAdded)
+    {
+        health += healthAdded;
+    }
     public bool PlayerStatus()
     {
         return isDead;
@@ -26,6 +31,7 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        health = maxHealth;
         location = transform.position;
         healthBar.maxValue = health;
         scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
