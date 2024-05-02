@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 242638648}
   - component: {fileID: 242638650}
   - component: {fileID: 242638649}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainCharacter
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -180,6 +180,8 @@ MonoBehaviour:
   waterSprite: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   windSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   explosionPrefab: {fileID: 1942305060547058160, guid: 6ce7990f3f3c510419dffb314ab66463, type: 3}
+  tidalWavePrefab: {fileID: 5331382363637010687, guid: 10fc5d8ef1328e34087020e6fd3f2905, type: 3}
+  windShearPrefab: {fileID: 5204096378615127072, guid: a996086d6c849384fb8c947626feb087, type: 3}
 --- !u!114 &242638647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +323,7 @@ GameObject:
   - component: {fileID: 459140903}
   - component: {fileID: 459140905}
   - component: {fileID: 459140904}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1019,7 +1021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673240335}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ingredient2Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1055,7 @@ GameObject:
   - component: {fileID: 733507288}
   - component: {fileID: 733507290}
   - component: {fileID: 733507289}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1205,7 +1207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 833111963}
   - component: {fileID: 833111964}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ingredient2Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,7 +1331,7 @@ GameObject:
   - component: {fileID: 1032459381}
   - component: {fileID: 1032459380}
   - component: {fileID: 1032459379}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2158,7 +2160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1437341382}
   - component: {fileID: 1437341383}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: PlayerHealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2683,7 +2685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598698615}
   - component: {fileID: 1598698616}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ingredient1Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2766,7 +2768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1605615844}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ingredient1Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2798,7 +2800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1666559310}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3006,7 +3008,7 @@ Transform:
   m_GameObject: {fileID: 1896837972}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6536, y: 0.208, z: -0.04504037}
+  m_LocalPosition: {x: -0.85, y: 0.03, z: -0.04504037}
   m_LocalScale: {x: 21.301344, y: 10.288668, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3073,7 +3075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2001980532}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3234,6 +3236,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036854307}
   m_CullTransparentMesh: 1
+--- !u!1001 &8567301007140587989
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.885
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2858714999209766820, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5204096378615127072, guid: a996086d6c849384fb8c947626feb087, type: 3}
+      propertyPath: m_Name
+      value: WindShear
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a996086d6c849384fb8c947626feb087, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3246,3 +3305,4 @@ SceneRoots:
   - {fileID: 658340711}
   - {fileID: 1185551964}
   - {fileID: 560917645}
+  - {fileID: 8567301007140587989}

@@ -16,35 +16,8 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] Sprite windSprite;
 
     [SerializeField] GameObject explosionPrefab;
-
-    //public class Potion
-    //{
-    //    Ingredient ingredient1;
-    //    Ingredient ingredient2;
-    //    UInt16 finishedPotionID;
-
-    //    public Potion(Ingredient newIngredient1, Ingredient newIngredient2)
-    //    {
-    //        this.ingredient1 = newIngredient1;
-    //        this.ingredient2 = newIngredient2;
-    //    }
-
-    //    public void SetPotionPart1( Ingredient newPart1)
-    //    {
-    //        ingredient1 = newPart1;
-    //    }
-    //    public Ingredient GetPotionPart1() {  return ingredient1; }
-    //    public void SetPotionPart2( Ingredient newPart2)
-    //    {
-    //        ingredient2 = newPart2;
-    //    }
-    //    public Ingredient GetPotionPart2() { return ingredient2; }
-    //    void SetFinishedPotionID()
-    //    {
-    //        finishedPotionID = (UInt16)((int)ingredient1.GetPotionPartID() * (int)ingredient2.GetPotionPartID());
-    //    }
-    //    public UInt16 GetFinishedPotionID() {  return finishedPotionID; }
-    //}
+    [SerializeField] GameObject tidalWavePrefab;
+    [SerializeField] GameObject windShearPrefab;
 
     public class Ingredient
     {
@@ -67,7 +40,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             ingredientID = 1;
             ingredientName = "Fireium";
-            //SetSprite(fireSprite);
         }
         public string GetName() {  return ingredientName; }
 
@@ -103,8 +75,32 @@ public class NewBehaviourScript : MonoBehaviour
         Debug.Log("Potion ID: " + finishedPotionID);
         switch (finishedPotionID) {
             case 0:
-                Instantiate(explosionPrefab, MouseWorldPosition(), transform.rotation); break;
+                Explosion(); break;
+            case 1:
+                 break;
+            case 2:
+                break;
+            case 3:
+                 break;
+            case 4:
+                TidalWave(); break;
+            case 8:
+                Windshear(); break;
         }
+    }
+
+    public void Explosion()
+    {
+        Instantiate(explosionPrefab, MouseWorldPosition(), transform.rotation);
+    }
+
+    public void TidalWave()
+    {
+        Instantiate(tidalWavePrefab, transform.position, transform.rotation);
+    }
+    public void Windshear()
+    {
+        Instantiate(windShearPrefab, transform.position, transform.rotation);
     }
 
     public Vector3 MouseWorldPosition()
