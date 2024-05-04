@@ -13,6 +13,7 @@ public class EnemySpawnerScript : MonoBehaviour
     [SerializeField] GameObject enemy1;
     [SerializeField] GameObject enemy2;
     [SerializeField] GameObject boss;
+    [SerializeField] bool bossSpawn = true;
     // Start is called before the first frame update
 
     Vector3 CameraPosition()
@@ -44,10 +45,6 @@ public class EnemySpawnerScript : MonoBehaviour
             {
                 Instantiate(enemy2, spawner.transform.position,Quaternion.identity);
             }
-            if(gameController.GetComponent<TimerScript>().GetMinutes() >= 3)
-            {
-                Instantiate(boss, spawner.transform.position, Quaternion.identity);
-            }
 
             timerStart -= 0.008f;
             rotationSpeed += 0.1f;
@@ -56,6 +53,11 @@ public class EnemySpawnerScript : MonoBehaviour
             {
                 timerStart = .5f;
             }
+        }
+        if (gameController.GetComponent<TimerScript>().GetMinutes() == 3 && gameController.GetComponent<TimerScript>().GetSeconds() == 0 && bossSpawn)
+        {
+            Instantiate(boss, spawner.transform.position, Quaternion.identity);
+            bossSpawn = false;
         }
     }
 }

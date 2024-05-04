@@ -13,12 +13,18 @@ public class TimerScript : MonoBehaviour
     [SerializeField] TMP_Text minutesText;
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject ingredientIcons;
+    [SerializeField] AudioSource audiosource;
+    [SerializeField] AudioClip runMusic;
+    [SerializeField] AudioClip bossIntroMusic;
+    [SerializeField] AudioClip bossMusic;
     GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1;
         player = GameObject.FindGameObjectWithTag("Player");
+        audiosource = GetComponent<AudioSource>();
     }
     public void QuitGame()
     {
@@ -30,6 +36,7 @@ public class TimerScript : MonoBehaviour
     }
 
     public int GetMinutes() {  return minutes; }
+    public int GetSeconds() {  return seconds; }
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +49,28 @@ public class TimerScript : MonoBehaviour
             seconds = 0; minutes++;
         }
 
+        if(minutes < 3 && !audiosource.isPlaying)
+        {
+            audiosource.loop = true;
+            audiosource.PlayOneShot(runMusic);
+        }
+        if (minutes == 3 && seconds == 0)
+        {
+            audiosource.Stop();
+        }
+        if (minutes >= 3 && seconds == 1 && !audiosource.isPlaying)
+        {
+            Debug.Log("BossSongPlaying");
+            audiosource.loop = false;
+            audiosource.PlayOneShot(bossIntroMusic);
+        }
+        if (minutes >= 3 && seconds > 0 && !audiosource.isPlaying)
+        {
+            audiosource.loop = true;
+            audiosource.PlayOneShot(bossMusic);
+        }
+
+
         secondsText.text = string.Format("{0:D2}", seconds);
         minutesText.text = string.Format("{0}", minutes);
 
@@ -49,16 +78,19 @@ public class TimerScript : MonoBehaviour
         {
             Time.timeScale = 0;
             pauseScreen.SetActive(true);
+            ingredientIcons.SetActive(false);
         } else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale == 0 && !gameOverScreen.activeSelf)
         {
             Time.timeScale = 1;
             pauseScreen.SetActive(false);
+            ingredientIcons.SetActive(true);
         }
 
         if (player.GetComponent<PlayerMovementScript>().PlayerStatus())
         {
             Time.timeScale = 0;
             gameOverScreen.SetActive(true);
+            ingredientIcons.SetActive(false);
         }
     }
 }

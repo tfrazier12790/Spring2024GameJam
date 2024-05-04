@@ -5,15 +5,29 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Data;
+using Unity.VisualScripting;
 
 public class NewBehaviourScript : MonoBehaviour
 {
     static List<Ingredient> ingredients;
     [SerializeField] SpriteRenderer ingredient1SpriteRenderer;
     [SerializeField] SpriteRenderer ingredient2SpriteRenderer;
+
     [SerializeField] Sprite fireSprite;
     [SerializeField] Sprite waterSprite;
     [SerializeField] Sprite windSprite;
+
+    [SerializeField] Image fireIcon;
+    [SerializeField] Image waterIcon;
+    [SerializeField] Image windIcon;
+
+    [SerializeField] float fireCoolDown = 0f;
+    [SerializeField] float waterCoolDown = 0f;
+    [SerializeField] float windCoolDown = 0f;
+
+    [SerializeField] AudioClip updraftSound;
+    [SerializeField] AudioClip cleanseSound;
+    [SerializeField] AudioSource audioSource;
 
     [SerializeField] GameObject explosionPrefab;
     [SerializeField] GameObject tidalWavePrefab;
@@ -78,23 +92,23 @@ public class NewBehaviourScript : MonoBehaviour
         Debug.Log("Potion ID: " + finishedPotionID);
         switch (finishedPotionID) {
             case 0:
-                Explosion(); break;
+                Explosion(); fireCoolDown = 1.5f; break;
             case 1:
-                Steam();  break;
+                Steam(); fireCoolDown = 1.5f; waterCoolDown = 1.5f; break;
             case 2:
-                Updraft(); break;
+                Updraft(); fireCoolDown = 1.5f; windCoolDown = 1.5f; break;
             case 3:
-                Steam(); break;
+                Steam(); fireCoolDown = 1.5f; waterCoolDown = 1.5f; break;
             case 4:
-                TidalWave(); break;
+                TidalWave(); waterCoolDown = 1.5f; break;
             case 5:
-                Cleanse(); break;
+                Cleanse(); waterCoolDown = 1.5f; windCoolDown = 1.5f; break;
             case 6:
-                Updraft(); break;
+                Updraft(); fireCoolDown = 1.5f; windCoolDown = 1.5f; break;
             case 7:
-                Cleanse(); break;
+                Cleanse(); waterCoolDown = 1.5f; windCoolDown = 1.5f; break;
             case 8:
-                Windshear(); break;
+                Windshear(); windCoolDown = 1.5f; break;
         }
     }
 
@@ -115,6 +129,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         gameObject.GetComponent<PlayerMovementScript>().AddHealth(((float)scorekeeper.GetComponent<ScoreKeeper>().GetWaterStat() * 0.6f) + 
                                                                   ((float)scorekeeper.GetComponent<ScoreKeeper>().GetWindStat() * 0.6f));
+        audioSource.PlayOneShot(cleanseSound);
     }
     public void Steam()
     {
@@ -131,7 +146,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Debug.Log("HitEnemy");
             hit.collider.gameObject.SendMessage("StartDot");
-
+            audioSource.PlayOneShot(updraftSound);
         }
     }
 
@@ -147,6 +162,7 @@ public class NewBehaviourScript : MonoBehaviour
             ingredients = new List<Ingredient>(2);
         }
         scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -156,35 +172,72 @@ public class NewBehaviourScript : MonoBehaviour
         {
             ThrowPotion();
         }
+
+        if(fireCoolDown > 0)
+        {
+            fireCoolDown -= Time.deltaTime;
+            fireIcon.color = Color.gray;
+        } else
+        {
+            fireIcon.color = Color.white;
+        }
+
+        if (waterCoolDown > 0)
+        {
+            waterCoolDown -= Time.deltaTime;
+            waterIcon.color = Color.gray;
+        } else
+        {
+            waterIcon.color = Color.white;
+        }
+
+        if (windCoolDown > 0)
+        {
+            windCoolDown -= Time.deltaTime;
+            windIcon.color = Color.gray;
+        } else
+        {
+            windIcon.color = Color.white;
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (ingredients.Count >= 2)
-            { 
-                ingredients.RemoveAt(0);
+            if (fireCoolDown <= 0)
+            {
+                if (ingredients.Count >= 2)
+                {
+                    ingredients.RemoveAt(0);
+                }
+                Ingredient tempIngredient = new Fireium();
+                tempIngredient.SetSprite(fireSprite);
+                ingredients.Add(tempIngredient);
             }
-            Ingredient tempIngredient = new Fireium();
-            tempIngredient.SetSprite(fireSprite);
-            ingredients.Add(tempIngredient);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (ingredients.Count >= 2)
+            if (waterCoolDown <= 0)
             {
-                ingredients.RemoveAt(0);
+                if (ingredients.Count >= 2)
+                {
+                    ingredients.RemoveAt(0);
+                }
+                Ingredient tempIngredient = new Waterium();
+                tempIngredient.SetSprite(waterSprite);
+                ingredients.Add(tempIngredient);
             }
-            Ingredient tempIngredient = new Waterium();
-            tempIngredient.SetSprite(waterSprite);
-            ingredients.Add(tempIngredient);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (ingredients.Count >= 2)
+            if (windCoolDown <= 0)
             {
-                ingredients.RemoveAt(0);
+                if (ingredients.Count >= 2)
+                {
+                    ingredients.RemoveAt(0);
+                }
+                Ingredient tempIngredient = new Windium();
+                tempIngredient.SetSprite(windSprite);
+                ingredients.Add(tempIngredient);
             }
-            Ingredient tempIngredient = new Windium();
-            tempIngredient.SetSprite(windSprite);
-            ingredients.Add(tempIngredient);
         }
         if (ingredients.Count >= 1)
         {
