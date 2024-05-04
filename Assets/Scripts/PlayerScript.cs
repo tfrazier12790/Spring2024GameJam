@@ -10,6 +10,8 @@ public class PlayerMovementScript : MonoBehaviour
     [SerializeField] float health;
     [SerializeField] GameObject scorekeeper;
     [SerializeField] Slider healthBar;
+
+
     //[SerializeField] TMP_Text scoreText;
     bool isDead = false;
     public float speed = 2f;
@@ -35,6 +37,7 @@ public class PlayerMovementScript : MonoBehaviour
         location = transform.position;
         healthBar.maxValue = health;
         scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
+
     }
 
     // Update is called once per frame
