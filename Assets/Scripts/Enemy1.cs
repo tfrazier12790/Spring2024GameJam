@@ -12,6 +12,8 @@ public class Enemy1 : MonoBehaviour
     [SerializeField] Slider healthBar;
     [SerializeField] float damageScalar = 1.0f;
     [SerializeField] float healthBarOffset = 0.75f;
+    [SerializeField] int dolMin;
+    [SerializeField] int dolMax;
     //[SerializeField] bool slow = false;
     [SerializeField] float timer;
     [SerializeField] float dotTimer = 0;
@@ -40,6 +42,8 @@ public class Enemy1 : MonoBehaviour
             player.GetComponent<PlayerMovementScript>().TakeDamage(damageScalar * Time.deltaTime);
         }
     }
+
+    public float GetHealth() { return health; }
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +61,7 @@ public class Enemy1 : MonoBehaviour
 
         if(health <= 0)
         {
-            scorekeeper.GetComponent<ScoreKeeper>().AddToScore(Random.Range(1, 4));
+            scorekeeper.GetComponent<ScoreKeeper>().AddToScore(Random.Range(dolMin, dolMax));
             Destroy(gameObject);
         }
 

@@ -48,5 +48,6 @@ public class StoreController : MonoBehaviour
     {
         creditsScreen.SetActive(true);
         storefront.SetActive(false);
+        tutorialScreen.SetActive(false);
     }
 }

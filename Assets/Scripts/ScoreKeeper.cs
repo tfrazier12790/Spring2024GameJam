@@ -5,17 +5,24 @@ using UnityEngine;
 public class ScoreKeeper : MonoBehaviour
 {
     public static ScoreKeeper instance;
-    static int score;
+    [SerializeField] int score;
     [SerializeField] int playerFireStat = 1;
-    [SerializeField] int fireCost = 72;
-    [SerializeField] int playerWaterStat = 0;
-    [SerializeField] int waterCost = 50;
-    [SerializeField] int playerWindStat = 0;
-    [SerializeField] int windCost = 50;
+    [SerializeField] int fireCost = 30;
+    [SerializeField] int playerWaterStat = 1;
+    [SerializeField] int waterCost = 30;
+    [SerializeField] int playerWindStat = 1;
+    [SerializeField] int windCost = 30;
 
     private void Awake()
     {
-        instance = this; 
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
         DontDestroyOnLoad(gameObject);
     }
 
@@ -33,7 +40,7 @@ public class ScoreKeeper : MonoBehaviour
         {
             playerFireStat++;
             score -= fireCost;
-            fireCost = (int)Mathf.Round(42f + Mathf.Pow((float)playerFireStat + 1f, 1.75f) * 9f);
+            fireCost = (int)Mathf.Round(8f + Mathf.Pow((float)playerFireStat, 1.5f) * 2f);
         }
     }
     public int GetFireStat()
@@ -47,7 +54,7 @@ public class ScoreKeeper : MonoBehaviour
         {
             playerWaterStat++;
             score -= waterCost;
-            waterCost = (int)Mathf.Round(42f + Mathf.Pow((float)playerWaterStat + 1f, 1.75f) * 9f);
+            waterCost = (int)Mathf.Round(8f + Mathf.Pow((float)playerWaterStat, 1.5f) * 2f);
         }
     }
     public int GetWaterStat()
@@ -61,7 +68,7 @@ public class ScoreKeeper : MonoBehaviour
         {
             playerWindStat++;
             score -= windCost;
-            windCost = (int)Mathf.Round(42f + Mathf.Pow((float)playerWindStat + 1f, 1.75f) * 9f);
+            windCost = (int)Mathf.Round(8f + Mathf.Pow((float)playerWindStat, 1.5f) * 2f);
         }
     }
     public int GetWindStat()

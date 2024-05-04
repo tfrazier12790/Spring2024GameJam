@@ -63,5 +63,10 @@ public class PlayerMovementScript : MonoBehaviour
         {
             isDead = true;
         }
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
 }
