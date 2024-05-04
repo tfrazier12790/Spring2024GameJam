@@ -168,6 +168,8 @@ MonoBehaviour:
   healthBar: {fileID: 1811977205160810190}
   damageScalar: 1
   healthBarOffset: 0.75
+  dolMin: 1
+  dolMax: 4
   timer: 0
   dotTimer: 0
 --- !u!1 &2145085390897948648

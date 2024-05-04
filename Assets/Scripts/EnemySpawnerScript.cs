@@ -56,7 +56,7 @@ public class EnemySpawnerScript : MonoBehaviour
         }
         if (gameController.GetComponent<TimerScript>().GetMinutes() == 3 && gameController.GetComponent<TimerScript>().GetSeconds() == 0 && bossSpawn)
         {
-            Instantiate(boss, spawner.transform.position, Quaternion.identity);
+            gameController.GetComponent<TimerScript>().SetBoss(Instantiate(boss, spawner.transform.position, Quaternion.identity));
             bossSpawn = false;
         }
     }

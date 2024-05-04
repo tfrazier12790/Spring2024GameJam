@@ -312,12 +312,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6a4726176be2b47bdcd67ba5f9eb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
-  speed: 2
+  maxSpeed: 3
+  speed: 3
   health: 40
   healthBar: {fileID: 147535079954037497}
-  damageScalar: 2
-  healthBarOffset: 4.14
+  damageScalar: 3
+  healthBarOffset: 1.5
+  dolMin: 0
+  dolMax: 0
   timer: 0
   dotTimer: 0
 --- !u!1 &4917007093615925765

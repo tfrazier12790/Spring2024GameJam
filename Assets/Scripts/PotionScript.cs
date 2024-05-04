@@ -92,23 +92,23 @@ public class NewBehaviourScript : MonoBehaviour
         Debug.Log("Potion ID: " + finishedPotionID);
         switch (finishedPotionID) {
             case 0:
-                Explosion(); fireCoolDown = 1.5f; break;
+                Explosion(); fireCoolDown = .5f; break;
             case 1:
-                Steam(); fireCoolDown = 1.5f; waterCoolDown = 1.5f; break;
+                Steam(); fireCoolDown = .5f; waterCoolDown = .5f; break;
             case 2:
-                Updraft(); fireCoolDown = 1.5f; windCoolDown = 1.5f; break;
+                Updraft(); fireCoolDown = .5f; windCoolDown = .5f; break;
             case 3:
-                Steam(); fireCoolDown = 1.5f; waterCoolDown = 1.5f; break;
+                Steam(); fireCoolDown = .5f; waterCoolDown = .5f; break;
             case 4:
-                TidalWave(); waterCoolDown = 1.5f; break;
+                TidalWave(); waterCoolDown = .5f; break;
             case 5:
-                Cleanse(); waterCoolDown = 1.5f; windCoolDown = 1.5f; break;
+                Cleanse(); waterCoolDown = 2f; windCoolDown = 2f; break;
             case 6:
-                Updraft(); fireCoolDown = 1.5f; windCoolDown = 1.5f; break;
+                Updraft(); fireCoolDown = .5f; windCoolDown = .5f; break;
             case 7:
-                Cleanse(); waterCoolDown = 1.5f; windCoolDown = 1.5f; break;
+                Cleanse(); waterCoolDown = 2f; windCoolDown = 2f; break;
             case 8:
-                Windshear(); windCoolDown = 1.5f; break;
+                Windshear(); windCoolDown = .5f; break;
         }
     }
 

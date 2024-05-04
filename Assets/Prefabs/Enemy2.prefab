@@ -241,8 +241,10 @@ MonoBehaviour:
   speed: 2
   health: 14
   healthBar: {fileID: 840018217732474647}
-  damageScalar: 1.5
+  damageScalar: 2
   healthBarOffset: 0.75
+  dolMin: 5
+  dolMax: 9
   timer: 0
   dotTimer: 0
 --- !u!1 &3923310902505275420

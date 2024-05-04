@@ -13,11 +13,15 @@ public class TimerScript : MonoBehaviour
     [SerializeField] TMP_Text minutesText;
     [SerializeField] GameObject pauseScreen;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject endGameScreen;
+    [SerializeField] GameObject UIElements;
     [SerializeField] GameObject ingredientIcons;
     [SerializeField] AudioSource audiosource;
     [SerializeField] AudioClip runMusic;
     [SerializeField] AudioClip bossIntroMusic;
     [SerializeField] AudioClip bossMusic;
+
+    [SerializeField] GameObject boss;
     GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,10 @@ public class TimerScript : MonoBehaviour
     public void ReturnToStore()
     {
         SceneManager.LoadScene(0);
+    }
+    public void SetBoss(GameObject newBoss)
+    {
+        boss = newBoss;
     }
 
     public int GetMinutes() {  return minutes; }
@@ -91,6 +99,13 @@ public class TimerScript : MonoBehaviour
             Time.timeScale = 0;
             gameOverScreen.SetActive(true);
             ingredientIcons.SetActive(false);
+        }
+
+        if(boss.GetComponent<Enemy1>().GetHealth() <= 0)
+        {
+            Time.timeScale = 0;
+            endGameScreen.SetActive(true);
+            UIElements.SetActive(false);
         }
     }
 }
