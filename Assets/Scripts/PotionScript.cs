@@ -33,6 +33,8 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] GameObject tidalWavePrefab;
     [SerializeField] GameObject windShearPrefab;
     [SerializeField] GameObject steamPrefab;
+    [SerializeField] GameObject missTextPrefab;
+    [SerializeField] float missTextOffset;
 
     [SerializeField] GameObject scorekeeper;
 
@@ -82,14 +84,11 @@ public class NewBehaviourScript : MonoBehaviour
     public void ThrowPotion()
     {
         int finishedPotionID = -1;
-        Debug.Log("First Element: " + ingredients[0].GetPotionPartName());
-        Debug.Log("Second Element: " + ingredients[1].GetPotionPartName());
         if (ingredients.Count == 2)
         {
             finishedPotionID = (ingredients[0].GetPotionPartID() - 1) * 3 + (ingredients[1].GetPotionPartID() - 1);
         }
         ingredients.Clear();
-        Debug.Log("Potion ID: " + finishedPotionID);
         switch (finishedPotionID) {
             case 0:
                 Explosion(); fireCoolDown = .5f; break;
@@ -140,13 +139,16 @@ public class NewBehaviourScript : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, Vector3.forward);
 
-        //Debug.Log(ray);
         Debug.Log(hit.collider.tag);
         if (hit.collider.tag == "Enemy")
         {
             Debug.Log("HitEnemy");
             hit.collider.gameObject.SendMessage("StartDot");
             audioSource.PlayOneShot(updraftSound);
+        } else
+        {
+            Debug.Log("Dot Missed!");
+            Instantiate(missTextPrefab);
         }
     }
 
