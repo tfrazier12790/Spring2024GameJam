@@ -163,6 +163,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (ingredients == null) {
             ingredients = new List<Ingredient>(2);
         }
+        ingredients.Clear();
         scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
         audioSource = GetComponent<AudioSource>();
     }
