@@ -17,7 +17,6 @@ public class Enemy1 : MonoBehaviour
     //[SerializeField] bool slow = false;
     [SerializeField] float timer;
     [SerializeField] float dotTimer = 0;
-    [SerializeField] bool touchingPlayer = false;
     GameObject player;
     GameObject scorekeeper;
 
@@ -41,15 +40,6 @@ public class Enemy1 : MonoBehaviour
         if(collision.gameObject == player)
         {
             player.GetComponent<PlayerMovementScript>().TakeDamage(damageScalar * Time.deltaTime);
-            touchingPlayer = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if(collision.gameObject == player)
-        {
-            touchingPlayer = false;
         }
     }
 
@@ -98,9 +88,6 @@ public class Enemy1 : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-        if (!touchingPlayer)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
-        }
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 }

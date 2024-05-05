@@ -15,6 +15,7 @@ public class TimerScript : MonoBehaviour
     [SerializeField] GameObject gameOverScreen;
     [SerializeField] GameObject endGameScreen;
     [SerializeField] GameObject UIElements;
+    [SerializeField] GameObject comboScreen;
     [SerializeField] GameObject ingredientIcons;
     [SerializeField] AudioSource audiosource;
     [SerializeField] AudioClip runMusic;
@@ -45,6 +46,27 @@ public class TimerScript : MonoBehaviour
 
     public int GetMinutes() {  return minutes; }
     public int GetSeconds() {  return seconds; }
+
+    public void CombosScreenButton()
+    {
+        pauseScreen.SetActive(false);
+        UIElements.SetActive(false);
+        comboScreen.SetActive(true);
+    }
+
+    public void ReturnToPauseMenu()
+    {
+        pauseScreen.SetActive(true);
+        UIElements.SetActive(true);
+        comboScreen.SetActive(false);
+    }
+
+    public void ContinueButton()
+    {
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
+        ingredientIcons.SetActive(true);
+    }
     // Update is called once per frame
     void Update()
     {
