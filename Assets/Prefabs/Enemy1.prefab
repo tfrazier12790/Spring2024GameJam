@@ -159,19 +159,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 858860913341587082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de6a4726176be2b47bdcd67ba5f9eb8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 74af9e0cb3db9e043a1a71fa65d10da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 0.75
-  speed: 0.75
-  health: 8
+  speed: 1.5
+  maxSpeed: 1.5
+  health: 12
   healthBar: {fileID: 1811977205160810190}
   damageScalar: 1
   healthBarOffset: 0.75
-  dolMin: 1
-  dolMax: 4
-  timer: 0
-  dotTimer: 0
+  dolMin: 2
+  dolMax: 5
 --- !u!1 &2145085390897948648
 GameObject:
   m_ObjectHideFlags: 0

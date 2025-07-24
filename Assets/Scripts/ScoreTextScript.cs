@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Updates the currency (Dol) text displayed on the UI
+/// </summary>
 public class ScoreTextScript : MonoBehaviour
 {
-    [SerializeField] GameObject scorekeeper;
-    [SerializeField] TMP_Text text;
-    // Start is called before the first frame update
+    // reference to text component
+    TMP_Text text;
+
     void Start()
     {
-        scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
+        // Cache the text component from child
         text = gameObject.GetComponentInChildren<TMP_Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        text.text = string.Format("Dol: {0:D4}", scorekeeper.GetComponent<ScoreKeeper>().GetScore());
+        // Update text to show current dol amount with leading zeros
+        text.text = string.Format("Dol: {0:D4}", ScoreKeeper.Instance.GetDol());
     }
 }

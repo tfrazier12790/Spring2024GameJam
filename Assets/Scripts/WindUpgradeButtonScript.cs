@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles the behavior of the upgrade wind button.
+/// </summary>
+
 public class WindUpgradeButtonScript : MonoBehaviour
 {
-    [SerializeField] Button thisButton;
-    [SerializeField] GameObject scorekeeper;
-    // Start is called before the first frame update
+    // Reference to this button component
+    Button thisButton;
+
     void Start()
     {
+        // Get button and set up listener to increase wind stat
         thisButton = GetComponent<Button>();
         thisButton.onClick.AddListener(TaskOnClick);
-        scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
     }
 
     private void TaskOnClick()
     {
-        Debug.Log("Add To Fire Clicked");
-        scorekeeper.GetComponent<ScoreKeeper>().AddToWind();
+        // Attempt to increase the player's wind stat when button is clicked
+        ScoreKeeper.Instance.AddToWind();
     }
 }

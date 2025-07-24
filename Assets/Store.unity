@@ -1834,8 +1834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6546ab9c4ed34344b2bac085b05b618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorekeeper: {fileID: 0}
-  text: {fileID: 0}
 --- !u!1 &285575861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,8 +2987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11406f8de12389948bf429722a476266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisButton: {fileID: 0}
-  scorekeeper: {fileID: 0}
 --- !u!1 &491889411
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,8 +4228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3e7b4debe3cc34b93b102c8d1c864a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisButton: {fileID: 0}
-  scorekeeper: {fileID: 0}
 --- !u!1 &925254371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4501,7 +4495,6 @@ MonoBehaviour:
   fireCostText: {fileID: 751032601}
   waterCostText: {fileID: 2029339234}
   windCostText: {fileID: 1205379864}
-  scorekeeper: {fileID: 0}
 --- !u!114 &954527204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6556,7 +6549,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c069739e0951d10499379c3507868ba3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6669,13 +6662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0e6faa9cc513b46b44c0ef23f1b75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
-  playerFireStat: 1
-  fireCost: 10
-  playerWaterStat: 1
-  waterCost: 10
-  playerWindStat: 1
-  windCost: 10
 --- !u!4 &1408695996
 Transform:
   m_ObjectHideFlags: 0
@@ -7052,7 +7038,6 @@ MonoBehaviour:
   fireLevelText: {fileID: 1728020936}
   waterLevelText: {fileID: 2107224628}
   windLevelText: {fileID: 991263655}
-  scorekeeper: {fileID: 0}
 --- !u!1 &1670683960
 GameObject:
   m_ObjectHideFlags: 0
@@ -7857,12 +7842,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -8511,8 +8496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04abf3338c14e4f9b472b74dadd263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisButton: {fileID: 0}
-  scorekeeper: {fileID: 0}
 --- !u!1 &2107224626
 GameObject:
   m_ObjectHideFlags: 0

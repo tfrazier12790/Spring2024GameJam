@@ -144,12 +144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46800236dabd3842b712481f4dcea3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  scorekeeper: {fileID: 0}
-  endPosition: {x: 0, y: 0, z: 0}
-  timer: 0.5
-  lookAngle: 0
-  lookRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!82 &-4212155204494684628
 AudioSource:
   m_ObjectHideFlags: 0
@@ -162,7 +156,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 149cc2475bc3dbf43870d8d2e167148f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
