@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles behavior of the upgrade water button.
+/// </summary>
+
 public class WaterUpgradeButtonScript : MonoBehaviour
 {
-    [SerializeField] Button thisButton;
-    [SerializeField] GameObject scorekeeper;
-    // Start is called before the first frame update
+    // Reference to the button component
+    Button thisButton;
+    
     void Start()
     {
+        // Get button and set up listener to increase water stat
         thisButton = GetComponent<Button>();
         thisButton.onClick.AddListener(TaskOnClick);
-        scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
     }
 
     private void TaskOnClick()
     {
-        Debug.Log("Add To Water Clicked");
-        scorekeeper.GetComponent<ScoreKeeper>().AddToWater();
+        // Attempt to increase the player's water stat when button is clicked
+        ScoreKeeper.Instance.AddToWater();
     }
 }

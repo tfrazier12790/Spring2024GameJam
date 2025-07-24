@@ -4,69 +4,86 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PlayerMovementScript : MonoBehaviour
+/// <summary>
+/// Controls player movement, health management, and death state.
+/// </summary>
+
+public class PlayerScript : MonoBehaviour
 {
-    [SerializeField] float maxHealth = 10;
-    [SerializeField] float health;
-    [SerializeField] GameObject scorekeeper;
+    [Header("References")]
     [SerializeField] Slider healthBar;
 
+    // Variables for health
+    float maxHealth = 10;
+    float health;
 
-    //[SerializeField] TMP_Text scoreText;
-    bool isDead = false;
+    // Variables for movement
     public float speed = 2f;
-    Vector2 location;
+    Vector2 moveToLocation;
 
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-    }
-    public void AddHealth(float healthAdded)
-    {
-        health += healthAdded;
-    }
-    public bool PlayerStatus()
-    {
-        return isDead;
-    }
+    // Flag for tracking player death
+    bool isDead = false;
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Set initial health and bar values, and prevent movement before input
         health = maxHealth;
-        location = transform.position;
+        moveToLocation = transform.position;  // Done to keep the player from moving prematurely
         healthBar.maxValue = health;
-        scorekeeper = GameObject.FindGameObjectWithTag("Scorekeeper");
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //scoreText.text = string.Format("Dol: {0:D4}", scorekeeper.GetComponent<ScoreKeeper>().GetScore());
         if(Input.GetMouseButtonDown(0))
         {
-            location = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            // Update destination to the clicked mouse position
+            moveToLocation = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
-        if (transform.position.x < location.x)
+
+        // Move player toward target location 
+        transform.position = Vector2.MoveTowards(transform.position, moveToLocation, speed * Time.deltaTime);
+
+        // Flips sprite horizontally based on movement direction
+        if (transform.position.x < moveToLocation.x)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
-        } else if (transform.position.x > location.x)
+        } else if (transform.position.x > moveToLocation.x)
         {
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
-        transform.position = Vector2.MoveTowards(transform.position, location, speed * Time.deltaTime);
+
+        // Set health bar value and position below player
         healthBar.transform.position = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y - 0.75f, transform.position.z));
         healthBar.value = health;
 
+        // Mark player as dead if health hits 0
         if (health <= 0)
         {
             isDead = true;
         }
 
+        // Clamp health to maximum value
         if (health > maxHealth)
         {
             health = maxHealth;
         }
+    }
+
+    // Reduce health by given amount
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+    // Increase health by given amount
+    public void AddHealth(float healthAdded)
+    {
+        health += healthAdded;
+    }
+
+    // Returns whether player is alive or dead
+    public bool IsPlayerDead()
+    {
+        return isDead;
     }
 }

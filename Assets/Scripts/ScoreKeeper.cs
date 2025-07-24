@@ -2,78 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Tracks player stats and handles upgrades and in-game currency (Dol).
+/// Implements singleton pattern for global access.
+/// </summary>
+
 public class ScoreKeeper : MonoBehaviour
 {
-    public static ScoreKeeper instance;
-    [SerializeField] int score;
-    [SerializeField] int playerFireStat = 1;
-    [SerializeField] int fireCost = 30;
-    [SerializeField] int playerWaterStat = 1;
-    [SerializeField] int waterCost = 30;
-    [SerializeField] int playerWindStat = 1;
-    [SerializeField] int windCost = 30;
+    // Static variable for referencing this script
+    public static ScoreKeeper Instance;
+
+    // Variables to store currency
+    int dolCount;
+
+    // Enum to represent all upgradeable player stats
+    public enum StatType { Fire, Water, Wind }
+
+    // Initialize stat values and costs
+    private Dictionary<StatType, int> statLevels = new Dictionary<StatType, int>() 
+    {
+        {StatType.Fire, 1 },
+        {StatType.Water, 1 },
+        {StatType.Wind, 1 },
+    };
+
+    private Dictionary<StatType, int> upgradeCosts = new Dictionary<StatType, int>()
+    {
+        {StatType.Fire, 10 },
+        {StatType.Water, 10 },
+        {StatType.Wind, 10 },
+    };
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        // Classic singleton setup
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
         DontDestroyOnLoad(gameObject);
     }
 
-    public void AddToScore(int scoreToAdd)
+    // Add to dol (money) amount
+    public void AddToDol(int dolToAdd) => dolCount += dolToAdd;
+
+    // Get dol amount
+    public int GetDol() => dolCount;
+
+    // Gets current level of given stat
+    public int GetStat(StatType stat) => statLevels[stat];
+
+    // Gets current upgrade cost of given stat
+    public int GetCost(StatType stat) => upgradeCosts[stat];
+
+    // Attempt to upgrade specified stat if stat is not max and current dol is sufficient
+    public void UpgradeStat(StatType stat)
     {
-        score += scoreToAdd;
-    }
-    public int GetScore()
-    {
-        return score;
-    }
-    public void AddToFire()
-    {
-        if (score >= fireCost && playerFireStat < 10)
+        if(dolCount >= upgradeCosts[stat] && statLevels[stat] < 10)
         {
-            playerFireStat++;
-            score -= fireCost;
-            fireCost = (int)Mathf.Round(8f + Mathf.Pow((float)playerFireStat, 1.5f) * 2f);
+            statLevels[stat]++;
+            dolCount -= upgradeCosts[stat];
+            upgradeCosts[stat] = Mathf.RoundToInt(8f + Mathf.Pow(statLevels[stat], 1.5f) * 2f);
         }
     }
-    public int GetFireStat()
-    {
-        return playerFireStat;
-    }
-    public int GetFireCost() { return  fireCost; }
-    public void AddToWater()
-    {
-        if (score >= waterCost && playerWaterStat < 10)
-        {
-            playerWaterStat++;
-            score -= waterCost;
-            waterCost = (int)Mathf.Round(8f + Mathf.Pow((float)playerWaterStat, 1.5f) * 2f);
-        }
-    }
-    public int GetWaterStat()
-    {
-        return playerWaterStat;
-    }
-    public int GetWaterCost() { return waterCost; }
-    public void AddToWind()
-    {
-        if (score >= windCost && playerWindStat < 10)
-        {
-            playerWindStat++;
-            score -= windCost;
-            windCost = (int)Mathf.Round(8f + Mathf.Pow((float)playerWindStat, 1.5f) * 2f);
-        }
-    }
-    public int GetWindStat()
-    {
-        return playerWindStat;
-    }
-    public int GetWindCost() {  return windCost; }
+
+    // Functions compatible with existing code
+    public int GetFireStat() => GetStat(StatType.Fire);
+    public int GetWaterStat() => GetStat(StatType.Water);
+    public int GetWindStat() => GetStat(StatType.Wind);
+
+    public int GetFireCost() => GetCost(StatType.Fire);
+    public int GetWaterCost() => GetCost(StatType.Water);
+    public int GetWindCost() => GetCost(StatType.Wind);
+
+    public void AddToFire() => UpgradeStat(StatType.Fire);
+    public void AddToWater() => UpgradeStat(StatType.Water);
+    public void AddToWind() => UpgradeStat(StatType.Wind);
 }

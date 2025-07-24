@@ -3,35 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Controls navigation in the main store menu,
+/// including starting the game and displaying the tutorial, credits, and combo info.
+/// </summary>
+
 public class StoreController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [Header("Screen References")]
     [SerializeField] GameObject storefront;
     [SerializeField] GameObject tutorialScreen;
     [SerializeField] GameObject creditsScreen;
     [SerializeField] GameObject combosScreen;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Quits game
     public void QuitGame()
     {
         Application.Quit();
     }
 
+    // Loads the main game scene
     public void StartGame()
     {
         Debug.Log("Load Scene");
         SceneManager.LoadScene(1);
     }
+
+    // Displays the tutorial screen, hiding all other screens
     public void OpenTutorial()
     {
         tutorialScreen.SetActive(true);
@@ -40,6 +38,7 @@ public class StoreController : MonoBehaviour
         creditsScreen.SetActive(false);
     }
     
+    // Returns to the main store screen, hiding all other screens
     public void ReturnToStore()
     {
         creditsScreen.SetActive(false);
@@ -48,6 +47,7 @@ public class StoreController : MonoBehaviour
         combosScreen.SetActive(false);
     }
 
+    // Displays the credits screen, hiding all other screens
     public void OpenCredits()
     {
         creditsScreen.SetActive(true);
@@ -55,6 +55,8 @@ public class StoreController : MonoBehaviour
         tutorialScreen.SetActive(false);
         combosScreen.SetActive(false);
     }
+
+    // Displays the combinations screen, hiding all other screens
     public void OpenCombosScreen()
     {
         creditsScreen.SetActive(false);
